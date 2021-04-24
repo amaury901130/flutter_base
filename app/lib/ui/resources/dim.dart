@@ -1,5 +1,3 @@
-
-
 part of 'r.dart';
 
 //sizes should be x4 multiple.

@@ -1,5 +1,5 @@
-import 'package:app/ui/theme/theme.dart';
-import 'package:app/ui/theme/variants/light.dart';
+import 'package:theme/theme.dart';
+import 'package:theme/variants/light.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {

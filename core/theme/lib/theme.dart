@@ -1,4 +1,4 @@
-import 'package:app/ui/theme/spacing.dart';
+import 'package:theme/spacing.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme extends InheritedWidget {

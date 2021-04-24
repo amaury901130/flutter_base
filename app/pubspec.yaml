@@ -16,6 +16,8 @@ dependencies:
   flutter_svg: ^0.20.0-nullsafety.3
   repository:
     path: ../core/repository
+  theme:
+    path: ../core/theme
 
 dev_dependencies:
   flutter_test:

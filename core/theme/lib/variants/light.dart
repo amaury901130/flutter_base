@@ -1,6 +1,6 @@
-import 'package:app/ui/theme/colors.dart';
-import 'package:app/ui/theme/spacing.dart';
-import 'package:app/ui/theme/theme.dart';
+import 'package:theme/colors.dart';
+import 'package:theme/spacing.dart';
+import 'package:theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class LightTheme extends LocalTheme {

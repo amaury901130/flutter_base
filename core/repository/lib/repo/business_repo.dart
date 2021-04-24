@@ -1,5 +1,5 @@
 
-import 'package:repository/globals.dart';
+import 'package:repository/repo_init.dart';
 import 'package:repository/models/business.dart';
 
 abstract class BusinessRepo {
