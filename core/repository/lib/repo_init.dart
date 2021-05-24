@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Repo {
   static Future<void> initialize() async {
-    globalPreferences = await SharedPreferences.getInstance();
+    repoPreferences = await SharedPreferences.getInstance();
     BusinessRepo.register(BusinessRepoImp());
   }
 }
