@@ -1,4 +1,4 @@
-import 'package:repository/repo_init.dart';
+import 'package:repository/globals/globals.dart';
 
 abstract class BusinessRepo {
   static BusinessRepo get instance => getIt<BusinessRepo>();

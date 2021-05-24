@@ -1,28 +1,15 @@
 part of 'r.dart';
 
-enum Strings {
-  welcome_message,
-}
-
-// use %ns for interpolation example: %1s, %2s
-const Map<Strings, String> _localization = {
-  Strings.welcome_message: 'hello Flutter',
-};
-
-extension LocalizationString on Strings {
-  String? get value => _localization[this];
+extension LocalizationString on Localize {
+  String get value => localize[Localization.instance.currentLang]![this] ?? '';
 }
 
 extension LocalizationParams on String {
-  String parse({List<String>? withParams}) {
+  String parse({required List<String> withParams}) {
     var localText = this;
 
-    if (withParams == null) {
-      return localText;
-    }
-
-    for (int i = 1; i < withParams.length + 1; i++) {
-      localText = localText.replaceAll('%${i}s', withParams[i - 1]);
+    for (int i = 0; i < withParams.length; i++) {
+      localText = localText.replaceAll('%${i + 1}s', withParams[i]);
     }
 
     return localText;
