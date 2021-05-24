@@ -8,6 +8,6 @@ SharedPreferences globalPreferences;
 class AppInit {
   static Future<void> initialize() async {
     globalPreferences = await SharedPreferences.getInstance();
-    await RepoInit.initialize();
+    await Repo.initialize();
   }
 }
