@@ -6,6 +6,10 @@ import 'es.dart' as esLang;
 
 enum Lang { es, en }
 
+enum Localize {
+  welcome_message,
+}
+
 class Localization {
   Lang currentLang;
 
@@ -49,10 +53,6 @@ extension LangExtensions on Lang {
   }
 
   String get value => langValues[this]!;
-}
-
-enum Localize {
-  welcome_message,
 }
 
 // use %ns for interpolation example: %1s, %2s
