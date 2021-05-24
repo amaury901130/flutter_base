@@ -4,82 +4,84 @@ import 'package:theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class LightTheme extends LocalTheme {
-  final spacing = Spacing(4.0);
-  final textScale = TextScale(s: .86, m: 1, l: 1.14);
-
-  static const colorScheme = ColorScheme(
-    brightness: Brightness.light,
-    primary: const Color(0xFF2A374A),
-    primaryVariant: const MaterialColor(
-      0xFF9CA7B7,
-      <int, Color>{
-        50: const Color(0x669CA7B7),
-      },
-    ),
-    secondary: const MaterialColor(
-      0xFFF5406F,
-      <int, Color>{
-        500: const Color(0xFFF5406F),
-      },
-    ),
-    secondaryVariant: const MaterialAccentColor(
-      0xFF0BD27F,
-      <int, Color>{
-        100: const Color(0xFF1ADA39),
-      },
-    ),
-    surface: const MaterialColor(
-      0xFFFFFFFF,
-      <int, Color>{
-        50: const Color(0xFFFFFFFF),
-      },
-    ),
-    background: const Color(0xFFFFFFFF),
-    error: const Color(0xFFF0524D),
-    onPrimary: const MaterialColor(
-      0xFFFFFFFF,
-      <int, Color>{
-        50: const Color(0xFFFFFFFF),
-      },
-    ),
-    onSecondary: const Color(0xFFFFFFFF),
-    onSurface: const MaterialColor(
-      0xFF2A374A,
-      <int, Color>{
-        50: const Color(0xFFEAEBED),
-      },
-    ),
-    onBackground: MaterialColor(
-      0xFF2A374A,
-      <int, Color>{
-        600: const Color(0xFF7F8792),
-      },
-    ),
-    onError: const Color(0xFFFFFFFF),
-  );
-
-  final data = ThemeData.from(
-    colorScheme: colorScheme,
-    textTheme: Typography.blackCupertino.copyWith(
-      headline1: titleXL,
-      headline2: titleL,
-      headline3: titleM,
-      headline4: titleS,
-      headline5: titleXS,
-      button: button,
-      bodyText1: body,
-      bodyText2: bodyS,
-      subtitle1: subtitleM,
-      subtitle2: subtitleS,
-      caption: caption,
-      overline: label,
-    ),
-  ).copyWith(
-    scaffoldBackgroundColor: colorScheme.background,
-    shadowColor: const Color(0x0D08258C),
-    dividerColor: const Color(0xFFF1F1F9),
-  );
+  LightTheme()
+      : super(
+          data: ThemeData.from(
+            colorScheme: _colorScheme,
+            textTheme: Typography.blackCupertino.copyWith(
+              headline1: _titleXL,
+              headline2: _titleL,
+              headline3: _titleM,
+              headline4: _titleS,
+              headline5: _titleXS,
+              button: _button,
+              bodyText1: _body,
+              bodyText2: _bodyS,
+              subtitle1: _subtitleM,
+              subtitle2: _subtitleS,
+              caption: _caption,
+              overline: _label,
+            ),
+          ).copyWith(
+            scaffoldBackgroundColor: _colorScheme.background,
+            shadowColor: const Color(0x0D08258C),
+            dividerColor: const Color(0xFFF1F1F9),
+          ),
+          textScale: TextScale(s: .86, m: 1, l: 1.14),
+          spacing: Spacing(4.0),
+        );
 }
+
+const _colorScheme = ColorScheme(
+  brightness: Brightness.light,
+  primary: const Color(0xFF2A374A),
+  primaryVariant: const MaterialColor(
+    0xFF9CA7B7,
+    <int, Color>{
+      50: const Color(0x669CA7B7),
+    },
+  ),
+  secondary: const MaterialColor(
+    0xFFF5406F,
+    <int, Color>{
+      500: const Color(0xFFF5406F),
+    },
+  ),
+  secondaryVariant: const MaterialAccentColor(
+    0xFF0BD27F,
+    <int, Color>{
+      100: const Color(0xFF1ADA39),
+    },
+  ),
+  surface: const MaterialColor(
+    0xFFFFFFFF,
+    <int, Color>{
+      50: const Color(0xFFFFFFFF),
+    },
+  ),
+  background: const Color(0xFFFFFFFF),
+  error: const Color(0xFFF0524D),
+  onPrimary: const MaterialColor(
+    0xFFFFFFFF,
+    <int, Color>{
+      50: const Color(0xFFFFFFFF),
+    },
+  ),
+  onSecondary: const Color(0xFFFFFFFF),
+  onSurface: const MaterialColor(
+    0xFF2A374A,
+    <int, Color>{
+      50: const Color(0xFFEAEBED),
+    },
+  ),
+  onBackground: MaterialColor(
+    0xFF2A374A,
+    <int, Color>{
+      600: const Color(0xFF7F8792),
+    },
+  ),
+  onError: const Color(0xFFFFFFFF),
+);
 
 const primaryFont = '';
 const primaryFontBlack = '';
@@ -136,7 +138,7 @@ const navBarTitleSelectedLight = const TextStyle(
   color: AppColors.selectedItem,
 );
 
-const titleXL = const TextStyle(
+const _titleXL = const TextStyle(
   fontFamily: primaryFontBlack,
   fontSize: titleXLFontSize,
   height: titleXLHeight,
@@ -144,7 +146,7 @@ const titleXL = const TextStyle(
   color: AppColors.textPrimary,
 );
 
-const titleL = const TextStyle(
+const _titleL = const TextStyle(
   fontFamily: primaryFontBlack,
   fontSize: titleLFontSize,
   height: titleLHeight,
@@ -152,7 +154,7 @@ const titleL = const TextStyle(
   color: AppColors.textPrimary,
 );
 
-const titleM = const TextStyle(
+const _titleM = const TextStyle(
   fontFamily: primaryFontBlack,
   fontSize: titleMFontSize,
   height: titleMHeight,
@@ -160,7 +162,7 @@ const titleM = const TextStyle(
   color: AppColors.textPrimary,
 );
 
-const titleS = const TextStyle(
+const _titleS = const TextStyle(
   fontFamily: primaryFontBlack,
   fontSize: titleSFontSize,
   height: titleSHeight,
@@ -168,7 +170,7 @@ const titleS = const TextStyle(
   color: AppColors.textPrimary,
 );
 
-const titleXS = const TextStyle(
+const _titleXS = const TextStyle(
   fontFamily: primaryFontHeavy,
   fontSize: titleXSFontSize,
   height: titleXSHeight,
@@ -176,7 +178,7 @@ const titleXS = const TextStyle(
   color: AppColors.textPrimary,
 );
 
-const subtitleM = const TextStyle(
+const _subtitleM = const TextStyle(
   fontFamily: primaryFontBlack,
   fontSize: subtitleMFontSize,
   height: subtitleMHeight,
@@ -184,7 +186,7 @@ const subtitleM = const TextStyle(
   color: AppColors.textPrimary,
 );
 
-const subtitleS = const TextStyle(
+const _subtitleS = const TextStyle(
   fontFamily: primaryFontBlack,
   fontSize: subtitleSFontSize,
   height: subtitleSHeight,
@@ -192,7 +194,7 @@ const subtitleS = const TextStyle(
   color: AppColors.textPrimary,
 );
 
-const button = const TextStyle(
+const _button = const TextStyle(
   fontFamily: primaryFontBlack,
   fontSize: buttonFontSize,
   height: buttonHeight,
@@ -200,7 +202,7 @@ const button = const TextStyle(
   color: AppColors.textPrimary,
 );
 
-const body = const TextStyle(
+const _body = const TextStyle(
   fontFamily: primaryFontRoman,
   fontSize: bodyFontSize,
   height: bodyHeight,
@@ -209,7 +211,7 @@ const body = const TextStyle(
   color: AppColors.textPrimary,
 );
 
-const bodyS = const TextStyle(
+const _bodyS = const TextStyle(
   fontFamily: primaryFontMedium,
   fontSize: bodySFontSize,
   height: bodySHeight,
@@ -226,14 +228,14 @@ const inputText = const TextStyle(
   letterSpacing: .1,
 );
 
-const caption = const TextStyle(
+const _caption = const TextStyle(
   fontFamily: primaryFontHeavy,
   fontSize: captionFontSize,
   height: captionHeight,
   color: AppColors.textPrimary,
 );
 
-const label = const TextStyle(
+const _label = const TextStyle(
   fontFamily: primaryFontBlack,
   fontSize: labelFontSize,
   height: labelHeight,

@@ -10,15 +10,15 @@ const Map<Strings, String> _localization = {
 };
 
 extension LocalizationString on Strings {
-  String get value => _localization[this];
+  String? get value => _localization[this];
 }
 
 extension LocalizationParams on String {
-  String parse({List<String> withParams}) {
+  String parse({List<String>? withParams}) {
     var localText = this;
 
     if (withParams == null) {
-      return localText ?? this;
+      return localText;
     }
 
     for (int i = 1; i < withParams.length + 1; i++) {

@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:repository/repo_init.dart';
 
 final getIt = GetIt.instance;
-SharedPreferences globalPreferences;
+late SharedPreferences globalPreferences;
 
 class AppInit {
   static Future<void> initialize() async {

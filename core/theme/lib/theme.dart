@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 class AppTheme extends InheritedWidget {
   AppTheme({
-    Key key,
-    this.theme,
-    Widget home,
+    Key? key,
+    required this.theme,
+    required Widget home,
   }) : super(key: key, child: home);
 
   final LocalTheme theme;
 
-  static AppTheme of(BuildContext context) {
+  static AppTheme? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<AppTheme>();
   }
 
@@ -25,7 +25,7 @@ class TextScale {
   final double m;
   final double l;
 
-  TextScale({this.s, this.m, this.l});
+  TextScale({required this.s, required this.m, required this.l});
 }
 
 abstract class LocalTheme {
@@ -40,12 +40,12 @@ abstract class LocalTheme {
   final Spacing spacing;
 
   LocalTheme({
-    this.data,
-    this.textScale,
-    this.spacing,
+    required this.data,
+    required this.textScale,
+    required this.spacing,
   });
 
-  static Color getColorShade({Color color, int shade}) {
+  static Color getColorShade({required Color color, required int shade}) {
     if (color is ColorSwatch) {
       return color[shade] ?? color;
     }
@@ -54,8 +54,8 @@ abstract class LocalTheme {
   }
 
   TextStyle getSmallButtonTextStyle() {
-    final smallButtonTextSize = data.textTheme.button.fontSize * textScale.s;
-    return data.textTheme.button.copyWith(
+    final smallButtonTextSize = data.textTheme.button!.fontSize! * textScale.s;
+    return data.textTheme.button!.copyWith(
       fontSize: smallButtonTextSize,
     );
   }
@@ -63,13 +63,13 @@ abstract class LocalTheme {
 
 extension WidgetDesignSystemTheme on Widget {
   LocalTheme designSystem(BuildContext context) {
-    return AppTheme.of(context).theme;
+    return AppTheme.of(context)!.theme;
   }
 }
 
 extension StateDesignSystemTheme on State {
   LocalTheme designSystem(BuildContext context) {
-    return AppTheme.of(context).theme;
+    return AppTheme.of(context)!.theme;
   }
 }
 

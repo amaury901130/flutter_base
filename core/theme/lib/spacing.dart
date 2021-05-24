@@ -12,17 +12,17 @@ class Spacing {
   final double xxxxxl;
 
   Spacing._({
-    this.spacerSize,
-    this.xxs,
-    this.xs,
-    this.s,
-    this.m,
-    this.l,
-    this.xl,
-    this.xxl,
-    this.xxxl,
-    this.xxxxl,
-    this.xxxxxl,
+    required this.spacerSize,
+    required this.xxs,
+    required this.xs,
+    required this.s,
+    required this.m,
+    required this.l,
+    required this.xl,
+    required this.xxl,
+    required this.xxxl,
+    required this.xxxxl,
+    required this.xxxxxl,
   });
 
   factory Spacing(double spacerSize) {

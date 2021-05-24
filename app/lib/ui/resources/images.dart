@@ -7,15 +7,15 @@ const Map<Images, String> _imagesValues = {
 };
 
 extension LoadImage on Images {
-  String get value => _imagesValues[this];
+  String get value => _imagesValues[this]!;
 
   Widget svg({
-    double width,
-    double height,
+    double? width,
+    double? height,
     BoxFit fit = BoxFit.contain,
-    Color color,
+    Color? color,
     Alignment alignment = Alignment.center,
-    String semanticLabel,
+    String? semanticLabel,
   }) =>
       _SvgImage.asset(
         this.value,
@@ -28,12 +28,12 @@ extension LoadImage on Images {
       );
 
   Image image({
-    Key key,
-    double scale,
-    width,
-    height,
-    fit,
-    alignment = Alignment.center,
+    Key? key,
+    double? scale,
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.contain,
+    Alignment alignment = Alignment.center,
   }) =>
       Image.asset(
         this.value,
@@ -48,14 +48,15 @@ extension LoadImage on Images {
 }
 
 class _SvgImage {
-  static Widget asset(String assetPath, {
-    double width,
-    double height,
+  static Widget asset(
+    String assetPath, {
+    double? width,
+    double? height,
     BoxFit fit = BoxFit.contain,
-    Color color,
+    Color? color,
     Alignment alignment = Alignment.center,
-    String semanticLabel,
-    String package,
+    String? semanticLabel,
+    String? package,
     @visibleForTesting bool isWeb = false,
   }) {
     return SvgPicture.asset(
