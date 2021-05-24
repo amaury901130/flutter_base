@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:repository/repo/business_repo.dart';
-import 'package:repository/repoImp/business_repo.dart';
+import 'package:repository/repo/abstract/business_repo.dart';
+import 'package:repository/repo/concrete/business_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
