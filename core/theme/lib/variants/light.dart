@@ -3,33 +3,35 @@ import 'package:theme/spacing.dart';
 import 'package:theme/theme.dart';
 import 'package:flutter/material.dart';
 
-class LightTheme extends LocalTheme {
-  LightTheme()
-      : super(
-          data: ThemeData.from(
-            colorScheme: _colorScheme,
-            textTheme: Typography.blackCupertino.copyWith(
-              headline1: _titleXL,
-              headline2: _titleL,
-              headline3: _titleM,
-              headline4: _titleS,
-              headline5: _titleXS,
-              button: _button,
-              bodyText1: _body,
-              bodyText2: _bodyS,
-              subtitle1: _subtitleM,
-              subtitle2: _subtitleS,
-              caption: _caption,
-              overline: _label,
-            ),
-          ).copyWith(
-            scaffoldBackgroundColor: _colorScheme.background,
-            shadowColor: const Color(0x0D08258C),
-            dividerColor: const Color(0xFFF1F1F9),
-          ),
-          textScale: TextScale(s: .86, m: 1, l: 1.14),
-          spacing: Spacing(4.0),
-        );
+class LightTheme implements LocalTheme {
+  @override
+  ThemeData get data => ThemeData.from(
+    colorScheme: _colorScheme,
+    textTheme: Typography.blackCupertino.copyWith(
+      headline1: _titleXL,
+      headline2: _titleL,
+      headline3: _titleM,
+      headline4: _titleS,
+      headline5: _titleXS,
+      button: _button,
+      bodyText1: _body,
+      bodyText2: _bodyS,
+      subtitle1: _subtitleM,
+      subtitle2: _subtitleS,
+      caption: _caption,
+      overline: _label,
+    ),
+  ).copyWith(
+    scaffoldBackgroundColor: _colorScheme.background,
+    shadowColor: const Color(0x0D08258C),
+    dividerColor: const Color(0xFFF1F1F9),
+  );
+
+  @override
+  Spacing get spacing => Spacing(4.0);
+
+  @override
+  TextScale get textScale => TextScale(small: .86, medium: 1, large: 1.14);
 }
 
 const _colorScheme = ColorScheme(
@@ -121,22 +123,6 @@ const inputTextHeight = 13 / inputTextFontSize;
 const labelHeight = 9 / labelFontSize;
 const inputFieldLabelHeight = 7 / labelFontSize;
 const captionHeight = 14 / captionFontSize;
-
-const navBarTitleUnselectedLight = const TextStyle(
-  fontFamily: primaryFontMedium,
-  fontSize: navBarFontSize,
-  height: subtitleSHeight,
-  letterSpacing: -.02,
-  color: AppColors.unselectedItem,
-);
-
-const navBarTitleSelectedLight = const TextStyle(
-  fontFamily: primaryFontBlack,
-  fontSize: navBarFontSize,
-  height: subtitleSHeight,
-  letterSpacing: -.02,
-  color: AppColors.selectedItem,
-);
 
 const _titleXL = const TextStyle(
   fontFamily: primaryFontBlack,

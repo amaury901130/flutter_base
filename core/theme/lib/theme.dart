@@ -10,67 +10,37 @@ class AppTheme extends InheritedWidget {
 
   final LocalTheme theme;
 
-  static AppTheme? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<AppTheme>();
-  }
+  static AppTheme? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<AppTheme>();
 
   @override
-  bool updateShouldNotify(AppTheme oldWidget) {
-    return true;
-  }
+  bool updateShouldNotify(AppTheme oldWidget) => true;
 }
 
 class TextScale {
-  final double s;
-  final double m;
-  final double l;
+  final double small;
+  final double medium;
+  final double large;
 
-  TextScale({required this.s, required this.m, required this.l});
+  TextScale({required this.small, required this.medium, required this.large});
 }
 
 abstract class LocalTheme {
-  static const largeButtonHeight = 46.0;
-  static const smallButtonHeight = 30.0;
-  static const buttonBorderRadius = 1000.0;
-  static const outlinedButtonBorderWidthLarge = 2.0;
-  static const outlinedButtonBorderWidthSmall = 1.0;
-
-  final ThemeData data;
-  final TextScale textScale;
-  final Spacing spacing;
-
-  LocalTheme({
-    required this.data,
-    required this.textScale,
-    required this.spacing,
-  });
-
-  static Color getColorShade({required Color color, required int shade}) {
-    if (color is ColorSwatch) {
-      return color[shade] ?? color;
-    }
-
-    return color;
-  }
-
-  TextStyle getSmallButtonTextStyle() {
-    final smallButtonTextSize = data.textTheme.button!.fontSize! * textScale.s;
-    return data.textTheme.button!.copyWith(
-      fontSize: smallButtonTextSize,
-    );
-  }
+  abstract final ThemeData data;
+  abstract final TextScale textScale;
+  abstract final Spacing spacing;
 }
 
 extension WidgetDesignSystemTheme on Widget {
-  LocalTheme designSystem(BuildContext context) {
-    return AppTheme.of(context)!.theme;
-  }
+  LocalTheme themeOf({required BuildContext context}) => context._theme();
+}
+
+extension _ContextTheme on BuildContext {
+  LocalTheme _theme() => AppTheme.of(this)!.theme;
 }
 
 extension StateDesignSystemTheme on State {
-  LocalTheme designSystem(BuildContext context) {
-    return AppTheme.of(context)!.theme;
-  }
+  LocalTheme themeOf({required BuildContext context}) => context._theme();
 }
 
 extension ColorShade on Color {
