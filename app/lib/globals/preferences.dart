@@ -1,5 +1,5 @@
 import 'package:app/globals/globals.dart';
-import 'package:app/locale/localize.dart';
+import 'package:app/resources/locale/localize.dart';
 
 const PREF_LANG = 'app_lang';
 

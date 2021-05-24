@@ -7,7 +7,7 @@ import 'es.dart' as esLang;
 enum Lang { es, en }
 
 class Localization {
-  final Lang currentLang;
+  Lang currentLang;
 
   static Localization get instance => getIt<Localization>();
 
@@ -19,6 +19,7 @@ class Localization {
   Localization._(this.currentLang);
 
   void saveLang(Lang lang) {
+    this.currentLang = lang;
     Preferences.instance.appLang = lang;
   }
 }
