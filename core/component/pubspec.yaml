@@ -1,0 +1,34 @@
+name: component
+description: Resources layer, this layer will have all UI shared components, Strings, Images, Icons and the reference to the other layers
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ^2.10.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.0.5
+  flutter_svg: ^0.20.0-nullsafety.3
+  device:
+    path: ../device
+  domain:
+    path: ../domain
+  theme:
+    path: ../theme
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  retrofit_generator: ^2.0.0
+  build_runner: ^2.0.3
+  json_serializable: ^4.1.2
+
+flutter:
+  uses-material-design: true

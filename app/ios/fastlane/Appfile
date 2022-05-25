@@ -1,0 +1,14 @@
+app_identifier("com.flutter-base-beta.app") # The bundle identifier of your app
+apple_id("appleidmail@mail.com") # Your Apple email address
+
+itc_team_id("your_itc_team_id") # App Store Connect Team ID
+team_id("your_team_id") # Developer Portal Team ID
+
+for_platform :ios do
+  team_id "your_team_id" # for all iOS related things
+  for_lane :prod_build do
+    app_identifier 'com.flutter-base.app'
+  end
+end
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

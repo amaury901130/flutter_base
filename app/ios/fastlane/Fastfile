@@ -1,0 +1,152 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+# CONFIG VARIABLES
+username = 'appleidmail@mail.com'
+xcodeproj = 'Runner.xcodeproj' 
+workspace =  'Runner.xcworkspace' 
+scheme = "Runner"
+certificates_git_url = 'https://github.com/link_to_your/ios-certificates.git'
+team_id = 'your_team_id'
+distribute_external = true 
+notify_external_testers = false
+skip_waiting_for_build_processing = true 
+codesigning_identity = "Apple Distribution: Flutter base, Inc. (your_team_id)"
+changelog = "Bug fixes"
+
+platform :ios do
+  before_all do
+    setup_circle_ci
+  end
+
+  desc "Build Beta"
+  lane :beta_build do
+    match(type: "appstore", readonly:true)
+    ensure_git_status_clean ignored:"true"
+
+    disable_automatic_code_signing(path: xcodeproj,
+      team_id: team_id)
+
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore',
+      team_id: team_id,
+      readonly: true
+    )
+
+    update_project_provisioning(
+      xcodeproj: xcodeproj,
+      target_filter: "Runner",
+      profile: ENV["sigh_com.flutter-base-beta.app_appstore_profile-path"],
+      build_configuration: "Release"
+    )
+
+    increment_build_number(
+      build_number: number_of_commits()
+    )
+
+    gym(
+      workspace: workspace,
+      scheme: "Runner",
+      configuration: "Release",
+      clean: true,
+      export_method: "app-store",
+      output_directory:"./build/",
+      export_options: {
+        method: "app-store",
+        provisioningProfiles: { 
+          "com.flutter-base-beta" => ENV["sigh_com.flutter-base-beta.app_appstore_profile-name"]
+        }
+      },
+      codesigning_identity: codesigning_identity,
+      output_name: "flutter-base-beta.ipa"
+    )
+
+    app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_API_ISSUER_ID"],
+      key_filepath: "fastlane/tfapi.p8",
+      duration: 1200, # optional
+      in_house: false, # optional but may be required if using match/sigh
+    )
+
+    # Automatically loads Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
+    pilot(changelog: changelog,
+      skip_waiting_for_build_processing: skip_waiting_for_build_processing
+    )
+  end
+ 
+  desc "Build Prod"
+  lane :prod_build do
+    match(type: "appstore", readonly:true)
+    ensure_git_status_clean ignored:"true"
+
+    disable_automatic_code_signing(path: xcodeproj,
+      team_id: team_id)
+
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore',
+      team_id: team_id,
+      readonly: true
+    )
+
+    update_project_provisioning(
+      xcodeproj: xcodeproj,
+      target_filter: "FlutterBaseApp",
+      profile: ENV["sigh_com.flutter-base-beta.app_appstore_profile-path"],
+      build_configuration: "Release"
+    )
+  
+    increment_build_number(
+      build_number: number_of_commits()
+    )
+
+    gym(
+      workspace: workspace,
+      scheme: "Prod",
+      configuration: "Release",
+      clean: true,
+      export_method: "app-store",
+      output_directory:"./build/",
+      export_options: {
+        method: "app-store",
+        provisioningProfiles: { 
+          "flutter-base-beta" => ENV["sigh_com.flutter-base-beta.app_appstore_profile-name"]
+        }
+      },
+      codesigning_identity: codesigning_identity,
+      output_name: "flutter-base.ipa"
+    )
+
+    changelog = "Bug fixes and enhancements per Jira board"
+
+    app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_API_ISSUER_ID"],
+      key_filepath: "fastlane/tfapi.p8",
+      duration: 1200, # optional
+      in_house: false, # optional but may be required if using match/sigh
+    )
+
+    # Automatically loads Actions.lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
+    pilot(skip_waiting_for_build_processing: skip_waiting_for_build_processing)
+  end
+
+end
